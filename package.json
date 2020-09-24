@@ -1,0 +1,29 @@
+{
+  "name": "news-explorer-api",
+  "version": "0.0.1",
+  "description": "diplom project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "eslint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MeryMegg/news-explorer-api.git"
+  },
+  "author": "Mary Skosyrskaya <merymeggs@yandex.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MeryMegg/news-explorer-api/issues"
+  },
+  "homepage": "https://github.com/MeryMegg/news-explorer-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.6",
+    "validator": "^13.1.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
