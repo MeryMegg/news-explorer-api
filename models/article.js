@@ -4,45 +4,42 @@ const validator = require('validator');
 const articleSchema = new mongoose.Schema({
   keyword: {
     type: String,
-    required: [true, 'Ключевое слово обязательное для заполнения'],
+    required: true,
   },
   title: {
     type: String,
-    required: [true, 'Заголовок статьи - обязательное для заполнения поле'],
+    required: true,
   },
   text: {
     type: String,
-    required: [true, 'Текст статьи - обязательное для заполнения поле'],
+    required: true,
   },
   date: {
     type: String,
-    required: [true, 'Дата - обязательное для заполнения поле'],
+    required: true,
   },
   source: {
     type: String,
-    required: [true, 'Источник статьи - обязательное для заполнения поле'],
+    required: true,
   },
   link: {
     type: String,
-    required: [true, 'Заголовок статьи - обязательное для заполнения поле'],
+    required: true,
     validate: {
-      validator: (link) => validator.isEmail(link),
-      message: `Поле "link" должно содержать корректный url адрес`,
+      validator: (link) => validator.isURL(link),
     },
   },
   image: {
     type: String,
-    required: [true, 'Заголовок статьи - обязательное для заполнения поле'],
+    required: true,
     validate: {
-      validator: (url) => validator.isEmail(url),
-      message: `Поле "image" должно содержать корректный url адрес`,
-    }
+      validator: (url) => validator.isURL(url),
+    },
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: [true, 'Поле "owner" не может быть пустым'],
-    select: false,
+    required: true,
   },
 });
 
