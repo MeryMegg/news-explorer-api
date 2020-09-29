@@ -1,8 +1,8 @@
 ## Дипломная работа Backend
 
 Публичный ip: 84.201.179.102
-url: https://api.explorer-news.ml
-github: https://merymegg.github.io/news-explorer-api/
+url: https://api.explorer-news.ml, https://www.api.explorer-news.ml, http://www.api.explorer-news.ml, http://api.explorer-news.ml
+github: https://github.com/MeryMegg/news-explorer-api
 
 Версия: 0.0.1
 
@@ -72,8 +72,6 @@ github: https://merymegg.github.io/news-explorer-api/
 | GET `api.explorer-news.ml/articles`   | тело запроса отсутствует  | Получение всех всех статей сохраненных пользователем. В ответе: массив объектов с данными статей сохраненных авторизированным пользователем. Содержатся все поля обязательные для создания статьи и owner | 
 | POST `api.explorer-news.ml/articles`   | keyword, title, text, date, source, link, image | Создание статьи. В ответе: статус - 201, объект с данными созданной статьи   | 
 | DELETE `api.explorer-news.ml.me/articles/:id` | тело запроса отсутствует   | Удаление статьи. В ответе:объект с данными удаленной статьи | 
-
-
 
 ## Инструкция по запуску проекта
 
