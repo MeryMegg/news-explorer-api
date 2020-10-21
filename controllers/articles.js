@@ -16,9 +16,7 @@ module.exports.createArticle = (req, res, next) => {
   Article.create({
     keyword, title, text, date, source, link, image, owner: req.user._id,
   })
-    .then((article) => {
-      res.status(201).send({ data: article });
-    })
+    .then((article) => res.status(201).send(article.omitPrivate()))
     .catch(next);
 };
 

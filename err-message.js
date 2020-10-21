@@ -12,12 +12,13 @@ module.exports.errMessage = {
   invalidArticleId: 'Некорректный формат id статьи',
   notFoundUser: 'Пользователь с таким id не найден',
   notFoundArticle: 'Статья с таким id не найдена',
-  notFound: 'Запрашиваемый ресурс не найден',
+  resourceNotFound: 'Запрашиваемый ресурс не найден',
   successfulAuth: 'Авторизация прошла успешно',
   unsuccessfulAuth: 'Неверный адрес электронной почты или пароль',
   accessDenied: 'Нельзя удалить статью, сохранённую другим пользователем',
   needLogin: 'Необходима авторизация',
   serverErr: 'На сервере произошла ошибка',
+  logoutSistem: 'Вы покинули аккаунт',
 };
 
 module.exports.duplicateKeyException = {

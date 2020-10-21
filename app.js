@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 /* импортируем модули */
 const routes = require('./routes');
@@ -15,14 +16,31 @@ const limiter = require('./middlewares/rateLimit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorsHandler = require('./middlewares/error-handler');
 
+const corsOptions = {
+  origin: [
+    'http://localhost:8080',
+    'https://explorer-news.ml',
+    'https://merymegg.github.io/news-explorer-frontend/',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: [
+    'Content-Type',
+    'origin',
+    'x-access-token',
+  ],
+  credentials: true,
+};
+
 /* приложение */
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
 
-app.use(limiter);
+//app.use(limiter);
 app.use(helmet());
-
+app.use('*', cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -32,4 +50,6 @@ app.use(errorLogger);
 
 app.use(errorsHandler);
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
