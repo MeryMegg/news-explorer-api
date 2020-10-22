@@ -8,7 +8,7 @@ const { createUser, login, logout } = require('../controllers/users');
 const NotFoundError = require('../errors/not-found-err');
 const { errMessage } = require('../err-message');
 
-router.post('/signup', createUserValidation, createUser);
+router.post('/signup', createUser);
 router.post('/signin', loginValidation, login);
 router.use(auth);
 router.use('/signout', logout);
