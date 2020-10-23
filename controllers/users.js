@@ -18,7 +18,6 @@ module.exports.getUser = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
-  console.log('и сюда зашел');
   const {
     name, email, password,
   } = req.body;
@@ -26,7 +25,7 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, email, password: hash,
     }))
-    .then((user) => res.status(201).send({ data: user.omitPrivate() }))
+    .then((user) => res.status(201).send(user.omitPrivate()))
     .catch((err) => {
       let error;
       if (err.name === 'MongoError' && err.code === duplicateKeyException.errCode) {
@@ -38,12 +37,11 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.login = (req, res, next) => {
-  console.log('и сюда пришел запрос');
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true }).send({ message: errMessage.successfulAuth }).end();
+      res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: true }).send(user.omitPrivate()).end();
     })
     .catch((err) => {
       let error;
@@ -57,11 +55,31 @@ module.exports.login = (req, res, next) => {
 
 module.exports.logout = (req, res, next) => {
   try {
-    return res.cookie('jwt', '', {
-      maxAge: 0,
-      httpOnly: true,
-    }).send({ message: errMessage.logoutSistem });
+    return res.clearCookie('jwt').send({ message: errMessage.logoutSistem }).end();
+    // return res.cookie('jwt', '', {
+    //   maxAge: 0,
+    //   httpOnly: true,
+    // }).send({ message: errMessage.logoutSistem });
   } catch (err) {
     return next();
   }
 };
+
+// router.get('/logout', function (req, res) {
+//   res.clearCookie('connect.sid');
+//   res.redirect('/');
+// });
+
+// router.get('/logout', function (req, res) {
+//   req.logOut();
+//   res.status(200).clearCookie('connect.sid', {
+//     path: '/',
+//     secure: false,
+//     httpOnly: false,
+//     domain: 'place.your.domain.name.here.com',
+//     sameSite: true,
+//   });
+//   req.session.destroy(function (err) {
+//     res.redirect('/');
+//   });
+// });

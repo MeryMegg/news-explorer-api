@@ -5,8 +5,6 @@ const { errMessage } = require('../err-message');
 
 module.exports = (req, res, next) => {
   const token = req.cookies.jwt;
-  console.log(errMessage)
-  console.log('пришел запрос', errMessage.needLogin)
   if (!token) {
     throw new AuthError(errMessage.needLogin);
   }
