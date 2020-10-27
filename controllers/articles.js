@@ -22,6 +22,7 @@ module.exports.createArticle = (req, res, next) => {
 
 module.exports.deleteArticle = (req, res, next) => {
   Article.findById(req.params.id)
+    .populate('owner')
     .orFail(new NotFoundError(errMessage.notFoundArticle))
     .then((article) => {
       if (!article.owner.equals(req.user._id)) {
