@@ -18,8 +18,8 @@ const errorsHandler = require('./middlewares/error-handler');
 
 const corsOptions = {
   origin: [
-    'http://localhost:8080',
-    'https://localhost:8080',
+    'http://localhost',
+    'https://localhost',
     'https://explorer-news.ml',
     'https://www.explorer-news.ml',
     'https://merymegg.github.io/news-explorer-frontend/',
