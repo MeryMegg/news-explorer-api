@@ -18,8 +18,7 @@ const errorsHandler = require('./middlewares/error-handler');
 
 const corsOptions = {
   origin: [
-    'http://localhost',
-    'https://localhost',
+    'http://localhost:8080',
     'https://explorer-news.ml',
     'https://www.explorer-news.ml',
     'https://merymegg.github.io/news-explorer-frontend/',
@@ -42,13 +41,14 @@ const corsOptions = {
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
-app.use('*', cors(corsOptions));
+
 //app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
+app.use('*', cors(corsOptions));
 app.use(routes);
 app.use(errorLogger);
 
