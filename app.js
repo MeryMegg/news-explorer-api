@@ -26,7 +26,6 @@ const corsOptions = {
     'http://explorer-news.ml',
     'http://www.explorer-news.ml',
     'http://merymegg.github.io/news-explorer-frontend/',
-    'http://www.merymegg.github.io/news-explorer-frontend/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -35,7 +34,6 @@ const corsOptions = {
     'Content-Type',
     'origin',
     'x-access-token',
-    'Access-Control-Allow-Origin',
   ],
   credentials: true,
 };
@@ -44,10 +42,9 @@ const corsOptions = {
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
-
+app.use('*', cors(corsOptions));
 //app.use(limiter);
 app.use(helmet());
-app.use('*', cors(corsOptions));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
