@@ -21,10 +21,9 @@ const corsOptions = {
     'http://localhost:8080',
     'https://explorer-news.ml',
     'https://www.explorer-news.ml',
-    'https://merymegg.github.io/news-explorer-frontend/',
     'http://explorer-news.ml',
     'http://www.explorer-news.ml',
-    'http://merymegg.github.io/news-explorer-frontend/',
+    'http://merymegg.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
@@ -33,6 +32,8 @@ const corsOptions = {
     'Content-Type',
     'origin',
     'x-access-token',
+    'authorization',
+    'credentials',
   ],
   credentials: true,
 };
@@ -41,19 +42,16 @@ const corsOptions = {
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
-
-//app.use(limiter);
+app.use('*', cors(corsOptions));
+app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
-app.use('*', cors(corsOptions));
 app.use(routes);
 app.use(errorLogger);
-
 app.use(errorsHandler);
-
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
 });
