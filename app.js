@@ -23,7 +23,6 @@ const corsOptions = {
     'https://explorer-news.ml',
     'https://www.explorer-news.ml',
     'https://merymegg.github.io/news-explorer-frontend/',
-    'https://www.merymegg.github.io/news-explorer-frontend/',
     'http://explorer-news.ml',
     'http://www.explorer-news.ml',
     'http://merymegg.github.io/news-explorer-frontend/',
@@ -36,6 +35,7 @@ const corsOptions = {
     'Content-Type',
     'origin',
     'x-access-token',
+    'Access-Control-Allow-Origin',
   ],
   credentials: true,
 };
