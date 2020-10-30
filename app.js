@@ -19,8 +19,15 @@ const errorsHandler = require('./middlewares/error-handler');
 const corsOptions = {
   origin: [
     'http://localhost:8080',
+    'https://localhost:8080',
     'https://explorer-news.ml',
+    'https://www.explorer-news.ml',
     'https://merymegg.github.io/news-explorer-frontend/',
+    'https://www.merymegg.github.io/news-explorer-frontend/',
+    'http://explorer-news.ml',
+    'http://www.explorer-news.ml',
+    'http://merymegg.github.io/news-explorer-frontend/',
+    'http://www.merymegg.github.io/news-explorer-frontend/',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
