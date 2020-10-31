@@ -32,6 +32,17 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: [
+    'Content-Type',
+    'origin',
+    'x-access-token',
+    'authorization',
+    'credentials',
+  ],
+  credentials: true,
   credentials: true,
 };
 //app.use(cors(corsOptions));
@@ -64,7 +75,6 @@ const corsOptions = {
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
-app.use(cors(corsOptions));
 app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
@@ -72,6 +82,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(requestLogger);
 //app.use('*', cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(routes);
 app.use(errorLogger);
 app.use(errorsHandler);
