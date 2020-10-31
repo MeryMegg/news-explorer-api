@@ -43,7 +43,7 @@ const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
 app.use('*', cors(corsOptions));
-app.use(limiter);
+//app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
