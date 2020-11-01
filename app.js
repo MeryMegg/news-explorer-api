@@ -24,6 +24,7 @@ const corsOptions = {
     'http://explorer-news.ml',
     'http://www.explorer-news.ml',
     'http://merymegg.github.io',
+    'https://merymegg.github.io',
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
