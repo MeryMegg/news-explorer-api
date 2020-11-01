@@ -31,16 +31,16 @@ const corsOptions = {
   allowedHeaders: [
     'Content-Type',
     'origin',
-    'x-access-token'
+    'x-access-token',
   ],
-  credentials: true
-}
+  credentials: true,
+};
 
 /* приложение */
 const app = express();
 
 mongoose.connect(MONGO_URL, mongooseConfig);
-app.use(limiter);
+//app.use(limiter);
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
